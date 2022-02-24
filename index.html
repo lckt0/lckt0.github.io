@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lckt0's Redirect</title>
 </head>
-<body>
+<body onload="onloadFC();">
     <h1>Please wait, redirecting...</h1>
     <script>
-        var rootUrl = "@Url.Content("~/")";
-        window.location.href = rootUrl + "Logic-Gates-Interactive/";
+        function onloadFC(){
+            var rootUrl = "@Url.Content("~/")";
+            window.location.href = "Logic-Gates-Interactive/";
+        }
     </script>
 </body>
 </html>
