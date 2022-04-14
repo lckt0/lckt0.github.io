@@ -9,10 +9,38 @@
 <body onload="onloadFC();">
     <h1>Please wait, redirecting...</h1>
     <script>
-        function onloadFC(){
-            var rootUrl = "@Url.Content("/")";
-            window.location.href = "Logic-Gates-Interactive/";
+        function httpGet(theUrl)
+        {
+            let xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp=new XMLHttpRequest();
+            } else {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    return xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", theUrl, false);
+            xmlhttp.send();   
+            return xmlhttp.response;
         }
+        var url_param = location.search.split('url=')[1].trim();
+        var aim_url;
+        const conf = JSON.parse(httpGet(window.location.host + "/redirect_url_options.json"));
+        switch(conf[url_param].type){
+            case "json_url":
+                const obj = JSON.parse(httpGet(conf[url_param].src.split(':')[0]));
+                aim_url=obj[conf[url_param].src.split(':')[1]];
+            case "url":
+                aim_url=httpGet(conf[url_param].src).trim();
+            case "raw":
+                aim_url=conf[url_param].src;
+            default:
+                break;
+        }
+        window.location.replace(aim_url);
     </script>
 </body>
 </html>
