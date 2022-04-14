@@ -27,27 +27,30 @@
             return xmlhttp.response;
         }
         var url_param = location.search.split('url=')[1].trim();
+        var aim_url;
         const conf = JSON.parse(httpGet(window.location.protocol + "//" + window.location.host + "/redirect_url_options.json"));
         switch(conf[url_param].type){
             case "json_url":
-				alert("case: json_url");
                 let j_index = 0; 
                 if (conf[url_param].src.startsWith("http")) {
-					j_index++;
-				}
-				const remote_param = conf[url_param].src.split(':')[j_index+1];
-				const remote_url = conf[url_param].src.replace(":" + remote_param, "");
+                    j_index++;
+                }
+                const remote_param = conf[url_param].src.split(':')[2];
+                const remote_url = conf[url_param].src.replace(":" + remote_param, "");
                 const obj = JSON.parse(httpGet(remote_url));
-				window.location.replace(obj[remote_param]);
+                alert(obj[remote_param]);
+                aim_url=obj[remote_param];
+				break;
             case "url":
-				alert("case: url");
-                window.location.replace(httpGet(conf[url_param].src).trim());
-            case "raw":
-				alert("case: raw");
-                window.location.replace(conf[url_param].src);
+                aim_url=httpGet(conf[url_param].src).trim();
+				break;
+			case "raw":
+                aim_url=conf[url_param].src;
+                break;
             default:
                 break;
         }
+        window.location.replace(aim_url);
     </script>
 </body>
 </html>
