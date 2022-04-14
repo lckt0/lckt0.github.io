@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lckt0's Redirect</title>
 </head>
-<body onload="onloadFC();">
+<body>
     <h1>Please wait, redirecting...</h1>
     <script>
         function httpGet(theUrl)
@@ -28,7 +28,7 @@
         }
         var url_param = location.search.split('url=')[1].trim();
         var aim_url;
-        const conf = JSON.parse(httpGet(window.location.host + "/redirect_url_options.json"));
+        const conf = JSON.parse(httpGet(window.location.protocol + "//" + window.location.host + "/redirect_url_options.json"));
         switch(conf[url_param].type){
             case "json_url":
                 const obj = JSON.parse(httpGet(conf[url_param].src.split(':')[0]));
