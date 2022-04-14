@@ -32,9 +32,14 @@
         switch(conf[url_param].type){
             case "json_url":
                 let j_index = 0; 
-                if (conf[url_param].src.startsWith("http")) j_index++;
-                const obj = JSON.parse(httpGet(conf[url_param].src.split(':')[j_index]));
-                aim_url=obj[conf[url_param].src.split(':')[j_index+1]];
+                if (conf[url_param].src.startsWith("http")) {
+					j_index++;
+				}
+				const remote_param = conf[url_param].src.split(':')[2];
+				const remote_url = conf[url_param].src.replace(":" + remote_param, "");
+                const obj = JSON.parse(httpGet(remote_url));
+                alert(obj[remote_param]);
+				aim_url=obj[remote_param];
             case "url":
                 aim_url=httpGet(conf[url_param].src).trim();
             case "raw":
