@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord</title>
+</head>
+<body>
+    <script>
+        function httpGet(theUrl)
+        {
+            let xmlhttp;
+            
+            if (window.XMLHttpRequest) {
+                xmlhttp=new XMLHttpRequest();
+            } else {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    return xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", theUrl, false);
+            xmlhttp.send();
+            
+            return xmlhttp.response;
+        }
+
+        const obj = JSON.parse(httpGet("https://discord.com/api/guilds/852431438413561866/widget.json"));
+        window.location.replace(obj.instant_invite);
+    </script>
+</body>
+</html>
