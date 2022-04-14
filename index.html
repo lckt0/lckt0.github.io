@@ -31,8 +31,10 @@
         const conf = JSON.parse(httpGet(window.location.protocol + "//" + window.location.host + "/redirect_url_options.json"));
         switch(conf[url_param].type){
             case "json_url":
-                const obj = JSON.parse(httpGet(conf[url_param].src.split(':')[0]));
-                aim_url=obj[conf[url_param].src.split(':')[1]];
+                let j_index = 0; 
+                if (conf[url_param].src.startsWith("http")) j_index++;
+                const obj = JSON.parse(httpGet(conf[url_param].src.split(':')[j_index]));
+                aim_url=obj[conf[url_param].src.split(':')[j_index+1]];
             case "url":
                 aim_url=httpGet(conf[url_param].src).trim();
             case "raw":
