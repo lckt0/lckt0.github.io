@@ -1,0 +1,10 @@
+{
+  "discord": {
+    "type": "json_url",
+    "src": "https://discord.com/api/guilds/852431438413561866/widget.json:instant_invite"
+  },
+  "youtube": {
+    "type": "raw",
+    "src": "https://www.youtube.com/channel/UCYikC0hzGHzn-sVdvYhRVZw"
+  }
+}
