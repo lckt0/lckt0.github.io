@@ -6,5 +6,9 @@
   "youtube": {
     "type": "raw",
     "src": "https://www.youtube.com/channel/UCYikC0hzGHzn-sVdvYhRVZw"
+  },
+  "github": {
+    "type": "raw",
+    "src": "https://github.com/lckt0"
   }
 }
