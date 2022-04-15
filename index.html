@@ -40,11 +40,11 @@
                 const obj = JSON.parse(httpGet(remote_url));
                 alert(obj[remote_param]);
                 aim_url=obj[remote_param];
-				break;
+		break;
             case "url":
                 aim_url=httpGet(conf[url_param].src).trim();
-				break;
-			case "raw":
+		break;
+	    case "raw":
                 aim_url=conf[url_param].src;
                 break;
             default:
