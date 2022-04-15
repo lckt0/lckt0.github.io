@@ -50,7 +50,9 @@
             default:
                 break;
         }
-        window.location.replace(aim_url);
+	if (window.location.host == "lckt0.github.io") {
+	        window.location.replace(aim_url);
+	}
     </script>
 </body>
 </html>
