@@ -10,5 +10,9 @@
   "github": {
     "type": "raw",
     "src": "https://github.com/lckt0"
+  },
+    "discord-onesoft": {
+    "type": "json_url",
+    "src": "https://discord.com/api/guilds/965629626552561664/widget.json:instant_invite"
   }
 }
